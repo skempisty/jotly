@@ -1,5 +1,4 @@
 
-
 <h3>User: <span style="color:green"><%=current_user.name%></span></h3>
 
 <p><%=link_to "Login Page", root_path %></p>
@@ -35,9 +34,14 @@
       <%=button_to "Like", like_like_path(jot), params: {id: jot.id}, class: "btn btn-primary"%>
     <% end %>
 
-    <!-- edit button  -->
 
+    <!-- Follow button -->
+    
+
+    <!-- edit button  -->
+    <% if current_user.id == jot.user.id %>
     <%=button_to "Edit", edit_jot_path(jot), params: {id: jot.id}, class: "btn btn-warning"%>
+    <% end %>
   </div>
 
 
