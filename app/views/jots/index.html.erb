@@ -1,0 +1,45 @@
+
+
+<h3>User: <span style="color:green"><%=current_user.name%></span></h3>
+
+<p><%=link_to "Login Page", root_path %></p>
+
+<p><%=link_to "Create New Jot", new_jot_path %></p>
+
+
+<% @jots.reverse.each do |jot|  %>
+
+    <!-- Displays Content -->
+
+  <div class="jot col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <div class="img">
+      <%= image_tag jot.photo.url(:medium), class: "img-responsive" %>
+    </div>
+
+    <div style="text-overflow:ellipsis"><%= jot.content %></div>
+
+    <!-- Displays Poster -->
+
+    <p> - <small><%=jot.user.name%></small></p>
+
+    <!-- Displays Like # / link to who liked the jot -->
+
+    <p><%=link_to "#{jot.likes_count} Likes", like_path(jot) %></p>
+
+    <!-- Logic for if the button is like or unlike -->
+
+  <div class="container" style="white-space:nowrap">
+    <% if jot.liked_by?(current_user) %>
+      <%=button_to "Unlike", unlike_like_path(jot), params: {id: jot.id}, class: "btn btn-danger"%>
+    <% else %>
+      <%=button_to "Like", like_like_path(jot), params: {id: jot.id}, class: "btn btn-primary"%>
+    <% end %>
+
+    <!-- edit button  -->
+
+    <%=button_to "Edit", edit_jot_path(jot), params: {id: jot.id}, class: "btn btn-warning"%>
+  </div>
+
+
+  </div>
+<%end%>

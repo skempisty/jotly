@@ -1,0 +1,9 @@
+<h1>Likes show</h1>
+
+<%=link_to "Back to Jot Index", jots_path %>
+
+<% @likes.reverse.each do |like| %>
+
+<p><%=like.user.name%></p>
+
+<%end%>
