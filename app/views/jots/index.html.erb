@@ -45,7 +45,7 @@
     <%=link_to "Edit", edit_jot_path(jot), params: {id: jot.id}, class: "btn btn-warning"%>
 
     <!-- Delete button -->
-    <%=button_to "X", edit_jot_path(jot), params: {id: jot.id}, class: "btn btn-danger"%>
+    <%=link_to "X", jot, method: :delete, params: {id: jot.id}, data: { confirm: "Are you sure?" }, class: "btn btn-danger"%>
 
     <% end %>
   </div>

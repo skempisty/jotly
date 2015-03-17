@@ -24,9 +24,10 @@ class JotsController < ApplicationController
     redirect_to jots_path
   end
 
-  def delete
+  def destroy
     jot = Jot.find(params[:id])
     jot.destroy
+    redirect_to jots_path
   end
 
   private
