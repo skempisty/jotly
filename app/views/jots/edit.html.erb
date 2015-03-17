@@ -1,0 +1,13 @@
+<h1>Edit Jot</h1>
+
+<p><%=link_to "Jot Index", jots_path %></p>
+
+<%= form_for @jot, html: {multipart: true} do |f| %>
+
+<%=f.label :content %>:
+<%=f.text_area :content %>
+
+<%=f.file_field :photo %>
+
+<%=f.submit%>
+<%end%>

@@ -36,11 +36,17 @@
 
 
     <!-- Follow button -->
-    
+    <% if current_user.id != jot.user.id %>
+    <%=button_to "Follow", edit_jot_path(jot), params: {id: jot.id}, class: "btn btn-info"%>
+    <% end %>
 
     <!-- edit button  -->
     <% if current_user.id == jot.user.id %>
-    <%=button_to "Edit", edit_jot_path(jot), params: {id: jot.id}, class: "btn btn-warning"%>
+    <%=link_to "Edit", edit_jot_path(jot), params: {id: jot.id}, class: "btn btn-warning"%>
+
+    <!-- Delete button -->
+    <%=button_to "X", edit_jot_path(jot), params: {id: jot.id}, class: "btn btn-danger"%>
+
     <% end %>
   </div>
 

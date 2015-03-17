@@ -14,6 +14,21 @@ class JotsController < ApplicationController
     redirect_to jots_path
   end
 
+  def edit
+    @jot = Jot.find(params[:id])
+  end
+
+  def update
+    jot = Jot.find(params[:id])
+    jot.update(jot_params)
+    redirect_to jots_path
+  end
+
+  def delete
+    jot = Jot.find(params[:id])
+    jot.destroy
+  end
+
   private
   def jot_params
     params.require(:jot).permit(
