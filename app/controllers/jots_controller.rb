@@ -31,7 +31,14 @@ class JotsController < ApplicationController
   end
 
   def followed
-    @followed=Follower.where(subscriber_id: current_user.id)
+    @follower_objects=Follower.where(subscriber_id: current_user.id)
+    # @followed_user_ids = []
+
+    # follower_objects.each do |f|
+    #   @followed_user_ids.push(f.user.id)
+    # end
+
+
   end
 
 

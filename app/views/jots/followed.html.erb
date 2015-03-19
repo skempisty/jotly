@@ -11,6 +11,9 @@
 <h1>followed</h1>
 
 
-<% @followed.each do |f| %>
-<%=f.user.name %>
+<% @follower_objects.each do |f| %>
+  <strong><%=f.user.name %></strong>
+  <% f.user.jots.each do |jot| %>
+    <p><%=jot.content %></p>
+  <%end%>
 <%end%>
