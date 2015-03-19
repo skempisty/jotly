@@ -46,10 +46,23 @@
     <% end %>
 
 
+
     <!-- Follow button -->
     <% if current_user.id != jot.user.id %>
-    <%=button_to "Follow", follow_path(jot), params: {id: jot.id}, class: "btn btn-info"%>
+
+      <% if following?(jot.user.id) %>
+    <%=button_to "Unfollow", unfollow_path(jot), params: {id: jot.id}, class: "btn btn-info"%>
+
+    <!-- OR -->
+
+    <!-- Unfollow button -->
+      <% else %>
+      <%=button_to "Follow", follow_path(jot), params: {publisher_id: jot.user.id}, class: "btn btn-info"%>
+
+      <% end %>
     <% end %>
+
+
 
     <!-- edit button  -->
     <% if current_user.id == jot.user.id %>

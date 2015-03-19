@@ -9,4 +9,12 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def following?(publisher_id)
+    if Follower.where(user_id: publisher_id, subscriber_id: current_user.id).exists?
+      return true
+    else
+      return false
+    end
+  end
+  helper_method :following?
 end

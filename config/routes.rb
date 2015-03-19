@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :jots
       get '/followed' => 'jots#followed'
       post '/follow' => 'followers#follow'
+      post '/unfollow' => 'followers#unfollow'
 
   resource :user
   resource :session
