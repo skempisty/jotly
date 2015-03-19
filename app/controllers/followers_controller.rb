@@ -8,6 +8,8 @@ class FollowersController < ApplicationController
   end
 
   def unfollow
+    @subscription = Follower.where(user_id: params[:publisher_id], subscriber_id: current_user.id)
+    @subscription.delete_all
     redirect_to jots_path
   end
 
