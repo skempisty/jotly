@@ -30,6 +30,14 @@ class JotsController < ApplicationController
     redirect_to jots_path
   end
 
+  def followed
+    @followed=Follower.where(subscriber_id: current_user.id)
+  end
+
+
+
+
+
   private
   def jot_params
     params.require(:jot).permit(

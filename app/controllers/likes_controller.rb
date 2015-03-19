@@ -16,4 +16,11 @@ class LikesController < ApplicationController
     @likes = Like.where(jot_id: params[:id])
   end
 
+
+
+
+
+
+
+
 end

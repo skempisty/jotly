@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   root 'users#index'
 
   resources :jots
+      get '/followed' => 'jots#followed'
+      post '/follow' => 'followers#follow'
+
   resource :user
   resource :session
   resources :likes do

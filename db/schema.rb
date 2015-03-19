@@ -17,18 +17,20 @@ ActiveRecord::Schema.define(version: 20150316223357) do
   enable_extension "plpgsql"
 
   create_table "followers", force: :cascade do |t|
-    t.string   "publisher_id"
-    t.string   "subscriber_id"
+    t.integer  "user_id"
+    t.integer  "subscriber_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
   create_table "jots", force: :cascade do |t|
     t.string   "content"
-    t.string   "user_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.integer  "likes_count",        default: 0
+    t.integer  "user_id"
+    t.decimal  "lat",                precision: 10, scale: 7
+    t.decimal  "long",               precision: 11, scale: 8
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
+    t.integer  "likes_count",                                 default: 0
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"

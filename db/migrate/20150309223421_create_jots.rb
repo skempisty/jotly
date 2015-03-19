@@ -2,7 +2,9 @@ class CreateJots < ActiveRecord::Migration
   def change
     create_table :jots do |t|
       t.string :content
-      t.string :user_id
+      t.integer :user_id
+      t.decimal :lat, precision: 10, scale: 7
+      t.decimal :long, precision: 11, scale: 8
 
       t.timestamps null: false
     end
