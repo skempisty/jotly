@@ -15,18 +15,60 @@
 
   <!-- Display Content -->
 
+  <div class="jot col-xs-12 col-sm-6 col-md-4 col-lg-3">
+
+      <div class="img">
+        <%= image_tag jot.photo.url(:medium), class: "img-responsive" %>
+      </div>
+
+      <p style="overflow-wrap:break-word"><%= jot.content %></p>
+
+    <!-- Displays Poster -->
+
+    <p> - <small style="color:green"><%=jot.user.name%></small></p>
+
+    <!-- Displays Like # / link to who liked the jot -->
+
+    <p><%=link_to "#{jot.likes_count} Likes", like_path(jot) %></p>
+
+    <!-- Logic for if the button is like or unlike -->
+
+
+    <% if jot.liked_by?(current_user) %>
+      <%=button_to "Unlike", unlike_like_path(jot), params: {id: jot.id}, class: "btn btn-danger"%>
+    <% else %>
+      <%=button_to "Like", like_like_path(jot), params: {id: jot.id}, class: "btn btn-primary"%>
+    <% end %>
 
 
 
+    <!-- Follow button -->
+    <% if current_user.id != jot.user.id %>
+
+      <% if following?(jot.user.id) %>
+    <%=button_to "Unfollow", unfollow_path, params: {publisher_id: jot.user.id}, class: "btn btn-info"%>
+
+    <!-- OR -->
+
+    <!-- Unfollow button -->
+      <% else %>
+      <%=button_to "Follow", follow_path, params: {publisher_id: jot.user.id}, class: "btn btn-info"%>
+
+      <% end %>
+    <% end %>
 
 
 
+    <!-- edit button  -->
+    <% if current_user.id == jot.user.id %>
+    <%=link_to "Edit", edit_jot_path(jot), params: {id: jot.id}, class: "btn btn-warning"%>
+
+    <!-- Delete button -->
+    <%=link_to "X", jot, method: :delete, params: {id: jot.id}, data: { confirm: "Are you sure?" }, class: "btn btn-danger"%>
+
+    <% end %>
 
 
+  </div>
 
-
-
-
-
-  <p><%=jot.content%></p>
-<%end%>
+  <%end%>
