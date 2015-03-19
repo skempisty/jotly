@@ -11,9 +11,22 @@
 <h1>followed</h1>
 
 
-<% @follower_objects.each do |f| %>
-  <strong><%=f.user.name %></strong>
-  <% f.user.jots.each do |jot| %>
-    <p><%=jot.content %></p>
-  <%end%>
+<% @followed_jots.sort_by(&:created_at).reverse.each do |jot| %>
+
+  <!-- Display Content -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <p><%=jot.content%></p>
 <%end%>
