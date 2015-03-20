@@ -3,7 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .jot {
   padding:10px;
-  .img{min-height:300px}
   height: 455px;
-  overflow-y:scroll;
+    .img{
+      min-height:300px
+      }
 }
