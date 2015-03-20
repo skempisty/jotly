@@ -30,7 +30,25 @@
 
     <!-- Displays Poster -->
 
-    <p> - <small style="color:green"><%=jot.user.name%></small></p>
+    <p style="display:inline-block"> - <strong><small style="color:green"><%=jot.user.name%></small></strong>
+
+      &nbsp;
+
+    <!-- Follow button -->
+    <% if current_user.id != jot.user.id %>
+
+      <% if following?(jot.user.id) %>
+    <%=button_to "Unfollow", unfollow_path, params: {publisher_id: jot.user.id}, class: "btn btn-info btn-xs"%>
+
+    <!-- OR -->
+
+    <!-- Unfollow button -->
+      <% else %>
+      <%=button_to "Follow", follow_path, params: {publisher_id: jot.user.id}, class: "btn btn-info btn-xs"%>
+
+      <% end %>
+    <% end %>
+  </p>
 
     <!-- Displays Like # / link to who liked the jot -->
 
@@ -47,29 +65,15 @@
 
 
 
-    <!-- Follow button -->
-    <% if current_user.id != jot.user.id %>
-
-      <% if following?(jot.user.id) %>
-    <%=button_to "Unfollow", unfollow_path, params: {publisher_id: jot.user.id}, class: "btn btn-info"%>
-
-    <!-- OR -->
-
-    <!-- Unfollow button -->
-      <% else %>
-      <%=button_to "Follow", follow_path, params: {publisher_id: jot.user.id}, class: "btn btn-info"%>
-
-      <% end %>
-    <% end %>
 
 
 
     <!-- edit button  -->
     <% if current_user.id == jot.user.id %>
-    <%=link_to "Edit", edit_jot_path(jot), params: {id: jot.id}, class: "btn btn-warning"%>
+    <%=link_to ('<span class="glyphicon glyphicon-edit"></span>').html_safe, edit_jot_path(jot), params: {id: jot.id}, class: "btn btn-warning"%>
 
     <!-- Delete button -->
-    <%=link_to "X", jot, method: :delete, params: {id: jot.id}, data: { confirm: "Are you sure?" }, class: "btn btn-danger"%>
+    <%=link_to ('<span class="glyphicon glyphicon-remove"></span>').html_safe, jot, method: :delete, params: {id: jot.id}, data: { confirm: "Are you sure?" }, class: "btn btn-danger"%>
 
     <% end %>
 
