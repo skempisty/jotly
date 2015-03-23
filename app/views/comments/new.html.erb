@@ -1,0 +1,16 @@
+<h1>New Comment</h1>
+
+
+<h2>Add Pic</h2>
+
+<h2>Show all comments under it</h2>
+
+<h2>Need like / follow buttons here too. Can copy/paste to comments index of the jot</h2>
+
+<%=form_for [@jot,@comment] do |f| %>
+
+<%=f.label :content %>
+<%=f.text_area :content %>
+
+<%=f.submit %>
+<%end%>

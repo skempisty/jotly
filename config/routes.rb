@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   root 'users#index'
 
-  resources :jots
+  resources :jots do
+    resources :comments
+  end
+
       get '/followed' => 'jots#followed'
       post '/follow' => 'followers#follow'
       post '/unfollow' => 'followers#unfollow'

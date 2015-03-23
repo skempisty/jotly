@@ -43,7 +43,12 @@
         </p>
 
         <!-- Displays Like # / link to who liked the jot -->
-        <p><%=link_to "#{jot.likes_count} Likes", like_path(jot) %></p>
+        <p><%=link_to "#{jot.likes_count} Likes", like_path(jot) %>
+
+        &nbsp&nbsp&nbsp&nbsp&nbsp
+        <!-- Displays comments / number of comments. Links to comment index -->
+        <%=link_to "Comments", jot_comments_path(jot) %>
+        </p>
 
         <!-- Logic for if the button is like or unlike -->
         <% if jot.liked_by?(current_user) %>
@@ -51,6 +56,9 @@
         <% else %>
           <%=button_to "Like", like_like_path(jot), params: {id: jot.id}, class: "btn btn-primary"%>
         <% end %>
+
+        <!-- Comment button -->
+        <%=link_to ('<span class="glyphicon glyphicon-comment"></span>').html_safe, new_jot_comment_path(jot), params: {id: jot.id}, class: "btn btn-primary"%>
 
         <!-- edit button  -->
         <% if current_user.id == jot.user.id %>

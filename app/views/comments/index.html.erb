@@ -1,0 +1,68 @@
+<h1>whatup</h1>
+
+
+<% @comments.reverse.each do |comment| %>
+<%=comment.content %>
+<%end%>
+
+
+
+  <div class="@jot col-xs-12 col-sm-6 col-md-4 col-lg-4">
+    <div class="thumbnail">
+
+      <!-- Image display -->
+      <div class="img">
+        <%= image_tag @jot.photo.url(:medium), class: "img-responsive" %>
+      </div>
+
+      <div class="caption">
+
+        <!-- Content -->
+        <p style="overflow-wrap:break-word"><%= @jot.content %></p>
+
+        <!-- Displays Poster name -->
+        <p style="display:inline-block"> - <strong><small style="color:green"><%=@jot.user.name%></small></strong>
+
+        &nbsp;
+
+        <!-- Follow button -->
+        <% if current_user.id != @jot.user.id %>
+          <% if following?(@jot.user.id) %>
+            <%=button_to "Unfollow", unfollow_path, params: {publisher_id: @jot.user.id}, class: "btn btn-info btn-xs"%>
+
+          <!-- OR -->
+          <% else %>
+            <!-- Unfollow button -->
+            <%=button_to "Follow", follow_path, params: {publisher_id: @jot.user.id}, class: "btn btn-info btn-xs"%>
+          <% end %>
+        <% end %>
+        </p>
+
+        <!-- Displays Like # / link to who liked the @jot -->
+        <p><%=link_to "#{@jot.likes_count} Likes", like_path(@jot) %>
+
+        &nbsp&nbsp&nbsp&nbsp&nbsp
+        <!-- Displays comments / number of comments. Links to comment index -->
+        <%=link_to "Comments", jot_comments_path(@jot) %>
+        </p>
+
+        <!-- Logic for if the button is like or unlike -->
+        <% if @jot.liked_by?(current_user) %>
+          <%=button_to "Unlike", unlike_like_path(@jot), params: {id: @jot.id}, class: "btn btn-danger"%>
+        <% else %>
+          <%=button_to "Like", like_like_path(@jot), params: {id: @jot.id}, class: "btn btn-primary"%>
+        <% end %>
+
+        <!-- Comment button -->
+        <%=link_to ('<span class="glyphicon glyphicon-comment"></span>').html_safe, new_jot_comment_path(@jot), params: {id: @jot.id}, class: "btn btn-primary"%>
+
+        <!-- edit button  -->
+        <% if current_user.id == @jot.user.id %>
+          <%=link_to ('<span class="glyphicon glyphicon-edit"></span>').html_safe, edit_jot_path(@jot), params: {id: @jot.id}, class: "btn btn-warning"%>
+
+          <!-- Delete button -->
+          <%=link_to ('<span class="glyphicon glyphicon-remove"></span>').html_safe, @jot, method: :delete, params: {id: @jot.id}, data: { confirm: "Are you sure?" }, class: "btn btn-danger"%>
+        <% end %>
+      </div>
+    </div>
+  </div>

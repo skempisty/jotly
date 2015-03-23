@@ -34,28 +34,13 @@ class JotsController < ApplicationController
     @follower_objects=Follower.where(subscriber_id: current_user.id)
     @followed_jots = []
 
-     @follower_objects.each do |f|
+    @follower_objects.each do |f|
       f.user.name
-       f.user.jots.each do |jot|
+      f.user.jots.each do |jot|
         @followed_jots.push(jot)
       end
     end
-
-
-
-
-
-    # @followed_user_ids = []
-
-    # follower_objects.each do |f|
-    #   @followed_user_ids.push(f.user.id)
-    # end
-
-
   end
-
-
-
 
 
   private
@@ -64,7 +49,4 @@ class JotsController < ApplicationController
       :content, :photo).merge(
       user_id: session[:current_user])
   end
-
-
-
 end
