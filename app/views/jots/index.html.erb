@@ -8,6 +8,7 @@
 
 <h3>User: <span style="color:green"><%=current_user.name%></span></h3>
 <p><%=link_to "Login Page", root_path %></p>
+<p><%=link_to "Logout", '/logout', method: :post %>
 <p><%=link_to "Create New Jot", new_jot_path %></p>
 
 <% @jots.reverse.each do |jot|  %>

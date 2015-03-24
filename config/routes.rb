@@ -16,6 +16,9 @@ Rails.application.routes.draw do
 
   resource :user
   resource :session
+
+      post '/logout' => 'sessions#logout'
+
   resources :likes do
     member do
       post :like
