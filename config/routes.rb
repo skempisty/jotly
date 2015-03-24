@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
 
       get '/followed' => 'jots#followed'
+      get '/myjots' => 'jots#my_jots'
       post '/follow' => 'followers#follow'
       post '/unfollow' => 'followers#unfollow'
 

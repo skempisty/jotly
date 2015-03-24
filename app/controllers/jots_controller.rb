@@ -43,6 +43,10 @@ class JotsController < ApplicationController
     end
   end
 
+  def my_jots
+    @my_jots = Jot.where(user_id: current_user.id)
+  end
+
   private
   def jot_params
     params.require(:jot).permit(

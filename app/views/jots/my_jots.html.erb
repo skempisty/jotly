@@ -1,9 +1,8 @@
 <ul class="nav nav-tabs">
-  <li role="presentation" class="active"><a href="/jots">All Jots</a></li>
+  <li role="presentation"><a href="/jots">All Jots</a></li>
   <li role="presentation"><a href="/followed">Followed Jots</a></li>
-  <li role="presentation"><a href="/myjots">My Jots</a></li>
+  <li role="presentation" class="active"><a>My Jots</a></li>
   <li role="presentation"><a><span style="color:red">Nearby Jots</span></a></li>
-
 </ul>
 
 <h3>User: <span style="color:green"><%=current_user.name%></span></h3>
@@ -11,7 +10,7 @@
 <p><%=link_to "Logout", '/logout', method: :post %>
 <p><%=link_to "Create New Jot", new_jot_path %></p>
 
-<% @jots.reverse.each do |jot|  %>
+<% @my_jots.reverse.each do |jot|%>
   <div class="jot col-xs-12 col-sm-6 col-md-4 col-lg-4">
     <div class="thumbnail">
 
@@ -29,19 +28,6 @@
         <p style="display:inline-block"> - <strong><small style="color:green"><%=jot.user.name%></small></strong>
 
         &nbsp;
-
-        <!-- Follow button -->
-        <% if current_user.id != jot.user.id %>
-          <% if following?(jot.user.id) %>
-            <%=button_to "Unfollow", unfollow_path, params: {publisher_id: jot.user.id}, class: "btn btn-info btn-xs"%>
-
-          <!-- OR -->
-          <% else %>
-            <!-- Unfollow button -->
-            <%=button_to "Follow", follow_path, params: {publisher_id: jot.user.id}, class: "btn btn-info btn-xs"%>
-          <% end %>
-        <% end %>
-        </p>
 
         <!-- Displays Like # / link to who liked the jot -->
         <p><%=link_to "#{jot.likes_count} Likes", like_path(jot) %>
