@@ -10,7 +10,8 @@ class JotsController < ApplicationController
   end
 
   def create
-    Jot.create(jot_params)
+    jot=Jot.create(jot_params)
+    JotMailer.send_to_followers(jot).deliver_later
     redirect_to jots_path
   end
 
@@ -41,7 +42,6 @@ class JotsController < ApplicationController
       end
     end
   end
-
 
   private
   def jot_params
