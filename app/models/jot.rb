@@ -13,6 +13,6 @@ class Jot < ActiveRecord::Base
     likes.where(user: user).exists?
   end
 
-
-
+geocoded_by :address
+reverse_geocoded_by :lat, :long
 end

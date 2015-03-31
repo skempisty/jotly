@@ -1,14 +1,32 @@
-<ul class="nav nav-tabs">
-  <li role="presentation"><a href="/jots">All Jots</a></li>
-  <li role="presentation"><a href="/followed">Followed Jots</a></li>
-  <li role="presentation" class="active"><a>My Jots</a></li>
-  <li role="presentation"><a><span style="color:red">Nearby Jots</span></a></li>
-</ul>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
 
-<h3>User: <span style="color:green"><%=current_user.name%></span></h3>
-<p><%=link_to "Login Page", root_path %></p>
-<p><%=link_to "Logout", '/logout', method: :post %>
-<p><%=link_to "Create New Jot", new_jot_path %></p>
+    <!-- Brand name -->
+    <div class="navbar-header">
+      <a class="navbar-brand">Jotly</a>
+    </div>
+
+    <!-- Left Navbar items -->
+    <div class="navbar-collapse collapse" id="navbar">
+      <ul class="nav navbar-nav">
+        <li><a href="/jots">All Jots</a></li>
+        <li><a href="/followed">Followed Jots</a></li>
+        <li class="active"><a href="/myjots">My Jots</a></li>
+        <li><a href="/jotsnearme"><span style="color:red">Nearby Jots</span></a></li>
+      </ul>
+
+      <!-- Right Navbar items -->
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active"><a href="#">User: <span style="color:green"><%=current_user.name%></span></a></li>
+        <li><%=link_to "Sign up", new_user_path %></li>
+        <li><%=link_to "Login", new_session_path %></li>
+        <li><%=link_to "Logout", '/logout', method: :post %></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
 
 <% @my_jots.reverse.each do |jot|%>
   <div class="jot col-xs-12 col-sm-6 col-md-4 col-lg-4">

@@ -1,10 +1,30 @@
-<ul class="nav nav-tabs">
-  <li role="presentation"><a href="/jots">All Jots</a></li>
-  <li role="presentation" class="active"><a href="/followed">Followed Jots</a></li>
-  <li role="presentation"><a href="/myjots">My Jots</a></li>
-  <li role="presentation"><a><span style="color:red">Nearby Jots</span></a></li>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
 
-</ul>
+    <!-- Brand name -->
+    <div class="navbar-header">
+      <a class="navbar-brand">Jotly</a>
+    </div>
+
+    <!-- Left Navbar items -->
+    <div class="navbar-collapse collapse" id="navbar">
+      <ul class="nav navbar-nav">
+        <li><a href="/jots">All Jots</a></li>
+        <li class="active"><a href="/followed">Followed Jots</a></li>
+        <li><a href="/myjots">My Jots</a></li>
+        <li><a href="/jotsnearme"><span style="color:red">Nearby Jots</span></a></li>
+      </ul>
+
+      <!-- Right Navbar items -->
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active"><a href="#">User: <span style="color:green"><%=current_user.name%></span></a></li>
+        <li><%=link_to "Sign up", new_user_path %></li>
+        <li><%=link_to "Login", new_session_path %></li>
+        <li><%=link_to "Logout", '/logout', method: :post %></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
 
 

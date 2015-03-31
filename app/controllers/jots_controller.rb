@@ -1,9 +1,10 @@
 class JotsController < ApplicationController
 
   def index
-    @jots = Jot.order('created_at').all
     @likes = Like.all
+    @jots = Jot.order('created_at').all
   end
+
 
   def new
     @jot = Jot.new
@@ -11,7 +12,7 @@ class JotsController < ApplicationController
 
   def create
     jot=Jot.create(jot_params)
-    JotMailer.send_to_followers(jot).deliver_later
+    # JotMailer.send_to_followers(jot).deliver_later
     redirect_to jots_path
   end
 
@@ -46,6 +47,23 @@ class JotsController < ApplicationController
   def my_jots
     @my_jots = Jot.where(user_id: current_user.id)
   end
+
+  def jots_near_me
+    @likes = Like.all
+
+    if params[:lat].present? && params[:long].present?
+      @jots = Jot.near([params[:lat],params[:long]], 20)
+    else
+      @jots = Jot.order('created_at').all
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @jots }
+    end
+        
+  end
+
 
   private
   def jot_params
