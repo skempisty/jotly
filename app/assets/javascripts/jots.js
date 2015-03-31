@@ -3,8 +3,7 @@
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
-$(function ()
-{
+$(window).load(function(){
 
 
   var h = [];
@@ -18,4 +17,10 @@ $(function ()
   jQuery.each(arr1, function(index,value){
     $(this).css("height",515-104-h[index]);
   });
+
+
+  // Must only be visible once javascript finishes loading. Clips otherwise
+  $('div.caption').css("visibility","visible");
+
+
 });

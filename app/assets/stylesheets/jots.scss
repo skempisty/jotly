@@ -7,6 +7,10 @@
       position:relative;
       height:525px;
     }
+    .caption{
+      // Must be hidden until javascript loads. See jots.js for where it becomes visible
+      visibility: hidden;
+    }
     .content{
 
       height:100%;

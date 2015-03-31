@@ -1,6 +1,7 @@
 class CreateJots < ActiveRecord::Migration
   def change
     create_table :jots do |t|
+      t.string :title
       t.string :content
       t.integer :user_id
       t.decimal :lat, precision: 10, scale: 7

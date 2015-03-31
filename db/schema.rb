@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20150320184259) do
   end
 
   create_table "jots", force: :cascade do |t|
+    t.string   "title"
     t.string   "content"
     t.integer  "user_id"
     t.decimal  "lat",                precision: 10, scale: 7
@@ -54,6 +55,7 @@ ActiveRecord::Schema.define(version: 20150320184259) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
+    t.string   "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

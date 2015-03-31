@@ -61,14 +61,14 @@ class JotsController < ApplicationController
       format.html
       format.json { render :json => @jots }
     end
-        
+
   end
 
 
   private
   def jot_params
     params.require(:jot).permit(
-      :content, :photo).merge(
+      :title, :content, :photo).merge(
       user_id: session[:current_user])
   end
 end

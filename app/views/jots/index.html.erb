@@ -17,9 +17,8 @@
 
       <!-- Right Navbar items -->
       <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="#">User: <span style="color:green"><%=current_user.name%></span></a></li>
+        <li class="active"><a href="/session/new">User: <span style="color:green"><%=current_user.name%></span></a></li>
         <li><%=link_to "Sign up", new_user_path %></li>
-        <li><%=link_to "Login", new_session_path %></li>
         <li><%=link_to "Logout", '/logout', method: :post %></li>
       </ul>
     </div>
@@ -39,6 +38,9 @@
       </div>
 
       <div class="caption">
+
+        <!-- Title -->
+        <strong><%= jot.title %></strong>
 
         <!-- Content -->
         <p class="content" style="overflow-wrap:break-word"><%= jot.content %></p>
