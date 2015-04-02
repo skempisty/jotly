@@ -14,7 +14,7 @@ $(document).ready(function(){
       // console.log("$img.height()", $img.height());
 
       var height = $img.height();
-      $this.find('.caption').css("height", 515 - 104 - height);
+      $this.find('.caption').css("height", 530 - 104 - height);
     });
 
   });
