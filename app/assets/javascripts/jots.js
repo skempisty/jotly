@@ -3,24 +3,19 @@
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
 
-$(window).load(function(){
+$(document).ready(function(){
 
+  $(".thumbnail").each(function(){
 
-  var h = [];
-  var arr = $("div.thumbnail").children("div.img");
-  var arr1 = $("div.thumbnail").children("div.caption");
+    var $this = $(this);
+    var $img = $this.find('img');
 
+    $img.load(function(){
+      // console.log("$img.height()", $img.height());
 
-  jQuery.each(arr, function(index, value){
-      h.push($(this).height());
+      var height = $img.height();
+      $this.find('.caption').css("height", 515 - 104 - height);
+    });
+
   });
-  jQuery.each(arr1, function(index,value){
-    $(this).css("height",515-104-h[index]);
-  });
-
-
-  // Must only be visible once javascript finishes loading. Clips otherwise
-  $('div.caption').css("visibility","visible");
-
-
 });
