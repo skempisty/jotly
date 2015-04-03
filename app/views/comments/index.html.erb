@@ -89,9 +89,15 @@
       <p style="overflow-wrap:break-word"><%= @jot.content %></p>
     </div>
   </div>
-</div>
+
+<br>
+
 <% @comments.each do |comment| %>
-<p>
-<%=comment.content %>
-</p>  
+  <div class="panel panel-default">
+    <div class="panel-heading"><span style="color:green"><%=comment.user.name%></span></div>
+    <div class="panel-body">
+      <%=comment.content %>
+    </div>
+  </div>
 <%end%>
+</div>
