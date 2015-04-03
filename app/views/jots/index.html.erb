@@ -1,3 +1,6 @@
+
+
+
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
 
@@ -33,9 +36,14 @@
     <div class="thumbnail">
 
       <!-- Image display -->
-      <div class="img">
-        <%= image_tag jot.photo.url(:medium), class: "img-responsive" %>
-      </div>
+
+        <div class="img">
+          <%=link_to jot_comments_path(jot) do %>
+            <%= image_tag jot.photo.url(:medium), class: "img-responsive" %>
+          <% end %>
+
+        </div>
+
 
       <div class="caption">
 

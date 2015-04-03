@@ -10,17 +10,20 @@
       height:565px;
       background-color: lightgrey;
     }
-    .content{
+        img.img-responsive{
+          margin-left:0;
+        }
+        .content{
 
-      height:100%;
-      overflow-y:scroll;
-    }
-    .post_options{
-      position:absolute;
-      bottom:10px;
+          height:100%;
+          overflow-y:scroll;
+        }
+        .post_options{
+          position:absolute;
+          bottom:10px;
+        }
     }
 
-}
 
 body.controller-jots {
   padding-top:70px;

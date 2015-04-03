@@ -1,27 +1,43 @@
-<h1>whatup</h1>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+
+    <!-- Brand name -->
+    <div class="navbar-header">
+      <a class="navbar-brand">Jotly</a>
+    </div>
+
+    <!-- Left Navbar items -->
+    <div class="navbar-collapse collapse" id="navbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/jots">All Jots</a></li>
+        <li><a href="/followed">Followed Jots</a></li>
+        <li><a href="/myjots">My Jots</a></li>
+        <li><a href="/jotsnearme"><span style="color:red">Nearby Jots</span></a></li>
+      </ul>
+
+      <!-- Right Navbar items -->
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active"><a href="/session/new">User: <span style="color:green"><%=current_user.name%></span></a></li>
+        <li><%=link_to "Sign up", new_user_path %></li>
+        <li><%=link_to "Logout", '/logout', method: :post %></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
 
-<% @comments.reverse.each do |comment| %>
-<%=comment.content %>
-<%end%>
 
+<br>
 
+<div class="@jot col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="thumbnail">
 
-  <div class="@jot col-xs-12 col-sm-6 col-md-4 col-lg-4">
-    <div class="thumbnail">
-
-      <!-- Image display -->
-      <div class="img">
-        <%= image_tag @jot.photo.url(:medium), class: "img-responsive" %>
-      </div>
-
-      <div class="caption">
-
-        <!-- Content -->
-        <p style="overflow-wrap:break-word"><%= @jot.content %></p>
-
+    <!-- Image display -->
+    <div class="img">
+      <%= image_tag @jot.photo.url(:medium), class: "img-responsive" %>
+      <div class="post_options">
         <!-- Displays Poster name -->
-        <p style="display:inline-block"> - <strong><small style="color:green"><%=@jot.user.name%></small></strong>
+        <p style="display:inline-block"> - <strong style="color:green;font-size:150%"><%=@jot.user.name%></strong>
 
         &nbsp;
 
@@ -65,4 +81,17 @@
         <% end %>
       </div>
     </div>
+
+    <div class="caption">
+      <!-- Title -->
+      <strong><%= @jot.title %></strong>
+      <!-- Content -->
+      <p style="overflow-wrap:break-word"><%= @jot.content %></p>
+    </div>
   </div>
+</div>
+<% @comments.each do |comment| %>
+<p>
+<%=comment.content %>
+</p>  
+<%end%>
