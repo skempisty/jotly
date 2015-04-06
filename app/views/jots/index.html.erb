@@ -1,6 +1,3 @@
-
-
-
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
 
@@ -78,7 +75,7 @@
 
           &nbsp&nbsp&nbsp&nbsp&nbsp
           <!-- Displays comments / number of comments. Links to comment index -->
-          <%=link_to "Comments", jot_comments_path(jot) %>
+          <%=link_to "#{jot.comments_count} Comments", jot_comments_path(jot) %>
           </p>
 
           <!-- Logic for if the button is like or unlike -->
