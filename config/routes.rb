@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   root 'users#index'
 
   resources :jots do
-    resources :comments
+    resources :comments do
+      resources :replies
+    end
   end
 
       get '/followed' => 'jots#followed'

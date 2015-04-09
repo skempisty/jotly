@@ -13,4 +13,14 @@ class CommentsController < ApplicationController
     @comments = Comment.where(jot_id: params[:jot_id])
     @jot=Jot.find(params[:jot_id])
   end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
+  end
+  
 end
