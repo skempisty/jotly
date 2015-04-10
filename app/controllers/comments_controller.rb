@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
 
   def index
     @comments = Comment.where(jot_id: params[:jot_id])
-    @jot=Jot.find(params[:jot_id])
+    @jot=Jot.find(params[:jot_id])  
   end
 
   def edit
@@ -22,5 +22,5 @@ class CommentsController < ApplicationController
 
   def destroy
   end
-  
+
 end

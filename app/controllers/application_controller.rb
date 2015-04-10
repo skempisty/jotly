@@ -17,4 +17,14 @@ class ApplicationController < ActionController::Base
     end
   end
   helper_method :following?
+
+  def replies_on_comment(comment_id)
+    @replies = Reply.where(comment_id: comment_id)
+    return @replies
+  end
+  helper_method :replies_on_comment
+
+
+
+
 end

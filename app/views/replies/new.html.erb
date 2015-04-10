@@ -1,1 +1,9 @@
 <h1>New Reply</h1>
+
+<%= form_for [@jot,@comment,@reply] do |f| %>
+
+<%=f.label :content %>
+<%=f.text_area :content %>
+
+<%=f.submit %>
+<% end %>
