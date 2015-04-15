@@ -17,30 +17,39 @@
 
       <!-- Right Navbar items -->
       <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="#">User: <span style="color:green"><%=current_user.name%></span></a></li>
+        <li class="active"><a href="/session/new">User: <span style="color:green"><%=current_user.name%></span></a></li>
         <li><%=link_to "Sign up", new_user_path %></li>
-        <li><%=link_to "Login", new_session_path %></li>
         <li><%=link_to "Logout", '/logout', method: :post %></li>
       </ul>
     </div>
   </div>
 </nav>
 
-
+<p><%=link_to "+ New Jot", new_jot_path %></p>
 
 <% @my_jots.reverse.each do |jot|%>
-  <div class="jot col-xs-12 col-sm-6 col-md-4 col-lg-4">
-    <div class="thumbnail">
+<div class="jot col-xs-12 col-sm-6 col-md-4 col-lg-4">
+  <div class="thumbnail">
 
-      <!-- Image display -->
+    <!-- Image display -->
+
       <div class="img">
-        <%= image_tag jot.photo.url(:medium), class: "img-responsive" %>
+        <%=link_to jot_comments_path(jot) do %>
+          <%= image_tag jot.photo.url(:medium), class: "img-responsive" %>
+        <% end %>
+
       </div>
 
-      <div class="caption">
 
-        <!-- Content -->
-        <p style="overflow-wrap:break-word"><%= jot.content %></p>
+    <div class="caption">
+
+      <!-- Title -->
+      <strong><%= jot.title %></strong>
+
+      <!-- Content -->
+      <p class="content" style="overflow-wrap:break-word"><%= jot.content %></p>
+
+        <div class="post_options">
 
         <!-- Displays Poster name -->
         <p style="display:inline-block"> - <strong><small style="color:green"><%=jot.user.name%></small></strong>
@@ -52,7 +61,7 @@
 
         &nbsp&nbsp&nbsp&nbsp&nbsp
         <!-- Displays comments / number of comments. Links to comment index -->
-        <%=link_to "Comments", jot_comments_path(jot) %>
+        <%=link_to "#{jot.comments_count} Comments", jot_comments_path(jot) %>
         </p>
 
         <!-- Logic for if the button is like or unlike -->
@@ -75,5 +84,6 @@
       </div>
     </div>
   </div>
+</div>
 
 <%end%>

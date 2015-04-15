@@ -94,7 +94,7 @@
 
 <% @comments.each do |comment| %>
   <div class="panel panel-default" style="margin-bottom:0">
-    <div class="panel-heading">
+    <div class="panel-heading" style="background-color:lightblue">
       <span style="color:green">
         <%=comment.user.name%>&nbsp&nbsp&nbsp&nbsp&nbsp<%=link_to "reply", new_jot_comment_reply_path(params[:jot_id],comment.id) %>
       </span>
@@ -103,6 +103,8 @@
       <%=comment.content %>
     </div>
   </div>
+
+    <!-- All replies to each comment -->
     <% replies_on_comment(comment.id).each do |reply| %>
       <div class="panel panel-default" style="width:90%;position:relative;left:10%;margin-bottom:0">
           <div class="panel-heading">

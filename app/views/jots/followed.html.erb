@@ -17,9 +17,8 @@
 
       <!-- Right Navbar items -->
       <ul class="nav navbar-nav navbar-right">
-        <li class="active"><a href="#">User: <span style="color:green"><%=current_user.name%></span></a></li>
+        <li class="active"><a href="/session/new">User: <span style="color:green"><%=current_user.name%></span></a></li>
         <li><%=link_to "Sign up", new_user_path %></li>
-        <li><%=link_to "Login", new_session_path %></li>
         <li><%=link_to "Logout", '/logout', method: :post %></li>
       </ul>
     </div>
@@ -28,67 +27,68 @@
 
 
 
-<h1>followed</h1>
-
-
 <% @followed_jots.sort_by(&:created_at).reverse.each do |jot| %>
+  <div class="jot col-xs-12 col-sm-6 col-md-4 col-lg-4">
+    <div class="thumbnail">
 
-  <!-- Display Content -->
+      <!-- Image display -->
 
-  <div class="jot col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="img">
+          <%=link_to jot_comments_path(jot) do %>
+            <%= image_tag jot.photo.url(:medium), class: "img-responsive" %>
+          <% end %>
 
-      <div class="img">
-        <%= image_tag jot.photo.url(:medium), class: "img-responsive" %>
+        </div>
+
+
+      <div class="caption">
+
+        <!-- Title -->
+        <strong><%= jot.title %></strong>
+
+        <!-- Content -->
+        <p class="content" style="overflow-wrap:break-word"><%= jot.content %></p>
+
+          <div class="post_options">
+
+          <!-- Displays Poster name -->
+          <p style="display:inline-block"> - <strong><small style="color:green"><%=jot.user.name%></small></strong>
+
+          &nbsp;
+
+          <!-- Follow button -->
+          <% if current_user.id != jot.user.id %>
+            <% if following?(jot.user.id) %>
+              <%=button_to "Unfollow", unfollow_path, params: {publisher_id: jot.user.id}, class: "btn btn-info btn-xs"%>
+
+            <!-- OR -->
+            <% else %>
+              <!-- Unfollow button -->
+              <%=button_to "Follow", follow_path, params: {publisher_id: jot.user.id}, class: "btn btn-info btn-xs"%>
+            <% end %>
+          <% end %>
+          </p>
+
+          <!-- Displays Like # / link to who liked the jot -->
+          <p><%=link_to "#{jot.likes_count} Likes", like_path(jot) %>
+
+          &nbsp&nbsp&nbsp&nbsp&nbsp
+          <!-- Displays comments / number of comments. Links to comment index -->
+          <%=link_to "#{jot.comments_count} Comments", jot_comments_path(jot) %>
+          </p>
+
+          <!-- Logic for if the button is like or unlike -->
+          <% if jot.liked_by?(current_user) %>
+            <%=button_to "Unlike", unlike_like_path(jot), params: {id: jot.id}, class: "btn btn-danger"%>
+          <% else %>
+            <%=button_to "Like", like_like_path(jot), params: {id: jot.id}, class: "btn btn-primary"%>
+          <% end %>
+
+          <!-- Comment button -->
+          <%=link_to ('<span class="glyphicon glyphicon-comment"></span>').html_safe, new_jot_comment_path(jot), params: {id: jot.id}, class: "btn btn-primary"%>
+        </div>
       </div>
-
-      <p style="overflow-wrap:break-word"><%= jot.content %></p>
-
-    <!-- Displays Poster -->
-
-    <p> - <small style="color:green"><%=jot.user.name%></small></p>
-
-    <!-- Displays Like # / link to who liked the jot -->
-
-    <p><%=link_to "#{jot.likes_count} Likes", like_path(jot) %></p>
-
-    <!-- Logic for if the button is like or unlike -->
-
-
-    <% if jot.liked_by?(current_user) %>
-      <%=button_to "Unlike", unlike_like_path(jot), params: {id: jot.id}, class: "btn btn-danger"%>
-    <% else %>
-      <%=button_to "Like", like_like_path(jot), params: {id: jot.id}, class: "btn btn-primary"%>
-    <% end %>
-
-
-
-    <!-- Follow button -->
-    <% if current_user.id != jot.user.id %>
-
-      <% if following?(jot.user.id) %>
-    <%=button_to "Unfollow", unfollow_path, params: {publisher_id: jot.user.id}, class: "btn btn-info"%>
-
-    <!-- OR -->
-
-    <!-- Unfollow button -->
-      <% else %>
-      <%=button_to "Follow", follow_path, params: {publisher_id: jot.user.id}, class: "btn btn-info"%>
-
-      <% end %>
-    <% end %>
-
-
-
-    <!-- edit button  -->
-    <% if current_user.id == jot.user.id %>
-    <%=link_to "Edit", edit_jot_path(jot), params: {id: jot.id}, class: "btn btn-warning"%>
-
-    <!-- Delete button -->
-    <%=link_to "X", jot, method: :delete, params: {id: jot.id}, data: { confirm: "Are you sure?" }, class: "btn btn-danger"%>
-
-    <% end %>
-
-
+    </div>
   </div>
 
-  <%end%>
+<%end%>
