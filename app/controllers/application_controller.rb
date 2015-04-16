@@ -24,7 +24,4 @@ class ApplicationController < ActionController::Base
   end
   helper_method :replies_on_comment
 
-
-
-
 end

@@ -101,7 +101,7 @@
 
         <% if current_user.id == comment.user.id %>
           <%=link_to ('<span class="glyphicon glyphicon-edit"></span>').html_safe, edit_jot_comment_path(params[:jot_id], comment.id), class: "btn btn-warning btn-xs" %>
-          <%=link_to ('<span class="glyphicon glyphicon-remove"></span>').html_safe, jot_comment_path(params[:jot_id], comment.id), method: :delete, class: "btn btn-danger btn-xs" %>
+          <%=link_to ('<span class="glyphicon glyphicon-remove"></span>').html_safe, jot_comment_path(params[:jot_id], comment.id), method: :delete, data: { confirm: "Are you sure you want to DELETE your COMMENT?" }, class: "btn btn-danger btn-xs" %>
         <% end %>
       </span>
     </div>
@@ -114,7 +114,14 @@
     <% replies_on_comment(comment.id).each do |reply| %>
       <div class="panel panel-default" style="width:90%;position:relative;left:10%;margin-bottom:0">
           <div class="panel-heading">
-            <span style="color:green"><%=reply.user.name %></span>
+            <span style="color:green">
+              <%=reply.user.name %>
+              &nbsp&nbsp&nbsp&nbsp&nbsp
+              <% if current_user.id == reply.user.id %>
+                <%=link_to ('<span class="glyphicon glyphicon-edit"></span>').html_safe, edit_comment_reply_path(comment.id, reply.id), class: "btn btn-warning btn-xs" %>
+                <%=link_to ('<span class="glyphicon glyphicon-remove"></span>').html_safe, comment_reply_path(comment.id, reply.id), method: :delete,  data: { confirm: "Are you sure you want to DELETE your REPLY?" }, class: "btn btn-danger btn-xs" %>
+              <% end %>
+            </span>
           </div>
           <div class="panel-body">
             <%=reply.content%>

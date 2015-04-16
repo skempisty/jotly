@@ -2,6 +2,7 @@ class Jot < ActiveRecord::Base
   belongs_to :user
   has_many :likes
   has_many :comments
+  
 
   validates :title, length: { maximum: 37,
     too_long: "%{count} characters is the maximum allowed" }

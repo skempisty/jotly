@@ -91,7 +91,7 @@
             <%=link_to ('<span class="glyphicon glyphicon-edit"></span>').html_safe, edit_jot_path(jot), params: {id: jot.id}, class: "btn btn-warning"%>
 
             <!-- Delete button -->
-            <%=link_to ('<span class="glyphicon glyphicon-remove"></span>').html_safe, jot, method: :delete, params: {id: jot.id}, data: { confirm: "Are you sure?" }, class: "btn btn-danger"%>
+            <%=link_to ('<span class="glyphicon glyphicon-remove"></span>').html_safe, jot, method: :delete, params: {id: jot.id}, data: { confirm: "Are you sure you want to DELETE your JOT?" }, class: "btn btn-danger"%>
           <% end %>
         </div>
       </div>
