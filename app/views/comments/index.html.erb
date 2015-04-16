@@ -57,9 +57,9 @@
         <!-- Displays Like # / link to who liked the @jot -->
         <p><%=link_to "#{@jot.likes_count} Likes", like_path(@jot) %>
 
-        &nbsp&nbsp&nbsp&nbsp&nbsp
+        &nbsp&nbsp&nbsp
         <!-- Displays comments / number of comments. Links to comment index -->
-        <%=link_to "Comments", jot_comments_path(@jot) %>
+        <%=link_to "#{@jot.comments_count} Comments", jot_comments_path(@jot) %>
         </p>
 
         <!-- Logic for if the button is like or unlike -->
