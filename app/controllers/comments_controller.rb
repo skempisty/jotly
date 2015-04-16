@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    Comment.create(params.require(:comment).permit(:content).merge(user_id: current_user.id,jot_id: params[:jot_id]))
+    Comment.create(comment_params)
     redirect_to jot_comments_path
   end
 
@@ -15,10 +15,14 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    @jot = Jot.find(params[:jot_id])
     @comment = Comment.find(params[:id])
   end
 
   def update
+    comment = Comment.find(params[:id])
+    comment.update(comment_params)
+    redirect_to jot_comments_path
   end
 
   def destroy
@@ -27,4 +31,10 @@ class CommentsController < ApplicationController
     redirect_to :back
   end
 
+  private
+  def comment_params
+    params.require(:comment).permit(
+      :content).merge(
+      user_id: current_user.id,jot_id: params[:jot_id])
+  end
 end
