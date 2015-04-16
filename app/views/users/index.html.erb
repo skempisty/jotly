@@ -3,6 +3,8 @@
   <div class="jumbotron">
     <h1>Jotly</h1>
     <p>Welcome to a constantly improving experience based on user feedback</p>
+    <br>
+    <p>Post pictures, comment, and discuss</p>
   </div>
 
   <!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
@@ -16,9 +18,14 @@
         <li class="table-view-cell">
             <strong><%=link_to "Login", new_session_path %></strong>
         </li>
-        <li class="table-view-cell">
-          <strong><%=link_to "Go to Jots", jots_path %></strong>
-        </li>
       </ul>
+      <% if session[:current_user].present? %>
+        <p>Or:</p>
+        <ul>
+          <li class="table-view-cell">
+            <strong><%=link_to "Continue as user: #{current_user.name}", jots_path %></strong>
+          </li>
+        </ul>
+      <% end %>
     </div>
   </div>
