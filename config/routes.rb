@@ -7,12 +7,13 @@ Rails.application.routes.draw do
   root 'users#index'
 
   resources :jots do
-    resources :comments do
-      resources :replies
-    end
+    resources :comments 
   end
 
-  
+  resources :comments, only: [] do
+    resources :replies
+  end
+
 
       get '/followed' => 'jots#followed'
       get '/myjots' => 'jots#my_jots'

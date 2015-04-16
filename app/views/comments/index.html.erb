@@ -96,7 +96,10 @@
   <div class="panel panel-default" style="margin-bottom:0">
     <div class="panel-heading" style="background-color:lightblue">
       <span style="color:green">
-        <%=comment.user.name%>&nbsp&nbsp&nbsp&nbsp&nbsp<%=link_to "reply", new_jot_comment_reply_path(params[:jot_id],comment.id) %>
+        <%=comment.user.name%>&nbsp&nbsp&nbsp&nbsp&nbsp
+        <%=link_to "Reply", new_comment_reply_path(comment.id), class: "btn btn-info btn-xs" %>
+        <%=link_to ('<span class="glyphicon glyphicon-edit"></span>').html_safe, edit_jot_comment_path(params[:jot_id], comment.id), class: "btn btn-warning btn-xs" %>
+        <%=link_to ('<span class="glyphicon glyphicon-remove"></span>').html_safe, jot_comment_path(params[:jot_id], comment.id), method: :delete, class: "btn btn-danger btn-xs" %>
       </span>
     </div>
     <div class="panel-body">
