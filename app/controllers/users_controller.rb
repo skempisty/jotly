@@ -8,8 +8,9 @@ class UsersController < ApplicationController
   end
 
   def create
-      User.create(params.require(:user).permit(:name))
-      redirect_to root_path
+      user = User.create(params.require(:user).permit(:name))
+      session[:current_user] = user.id
+      redirect_to jots_path
   end
 
 end

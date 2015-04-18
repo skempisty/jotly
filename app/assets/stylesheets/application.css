@@ -10,10 +10,20 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *= require bootstrap
- 
+
  *= require_self
  */
 
 form.button_to{
   display: inline-block;
+}
+body{
+  padding-top:70px;
+}
+.text-area{
+  width:600px;
+  height:200px;
+}
+#field_label{
+  font-size:200%;
 }

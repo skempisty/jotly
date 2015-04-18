@@ -1,19 +1,44 @@
-<h1>Edit Jot</h1>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+
+    <!-- Brand name -->
+    <div class="navbar-header">
+      <a class="navbar-brand">Jotly</a>
+    </div>
+
+    <!-- Left Navbar items -->
+    <div class="navbar-collapse collapse" id="navbar">
+      <ul class="nav navbar-nav">
+        <li><a href="/jots">All Jots</a></li>
+        <li><a href="/followed">Followed Jots</a></li>
+        <li><a href="/myjots">My Jots</a></li>
+      </ul>
+
+      <!-- Right Navbar items -->
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active"><a href="/session/new">User: <span style="color:green"><%=current_user.name%></span></a></li>
+        <li><%=link_to "Sign up", new_user_path %></li>
+        <li><%=link_to "Logout", '/logout', method: :post %></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
 <p><%=link_to "Jot Index", jots_path %></p>
 
 <%= form_for @jot, html: {multipart: true} do |f| %>
 
-<%=f.label :title %>:
-<%=f.text_field :title %>
+  <p id="field_label">Title: </p>
+  <%=f.text_field :title %>
 
-<br><br>
+  <br><br>
+  <p id="field_label">Photo: </p>
+  <%=f.file_field :photo %>
 
-<%=f.label :content %>:
-<br>
-<%=f.text_area :content, size: "50x20" %>
+  <br>
+  <p id="field_label">Jot: </p>
+  <%=f.text_area :content, class: "text-area" %>
 
-<%=f.file_field :photo %>
-
-<%=f.submit%>
+  <br>
+  <%=f.submit 'Edit Jot', class: "btn btn-warning"%>
 <%end%>

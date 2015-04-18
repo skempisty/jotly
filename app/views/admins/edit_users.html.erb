@@ -19,28 +19,37 @@
         <li class="active"><a href="/session/new">User: <span style="color:green"><%=current_user.name%></span></a></li>
         <li><%=link_to "Sign up", new_user_path %></li>
         <li><%=link_to "Logout", '/logout', method: :post %></li>
+        <% if current_user.try(:admin?) %>
+          <li class="dropdown active">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin Corner <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li class="active"><a href="#">Edit Users</a></li>
+            </ul>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>
 </nav>
 
-<p><%=link_to "Jot Index", jots_path %></p>
+<br>
+<h1>User Database</h1>
 
-<%= form_for @jot, html: {multipart: true} do |f| %>
-  <p id="field_label">Title: </p>
-  <%=f.text_field :title %>
-
-  <br><br>
-
-  <p id="field_label">Photo: </p>
-  <%=f.file_field :photo %>
-
-  <br>
-
-  <p id="field_label">Jot: </p>
-  <%=f.text_area :content, class: "text-area" %>
-
-  <br>
-
-  <%=f.submit 'Post Jot', class: "btn btn-primary"%>
-<%end%>
+<table class="table table-striped table-hover table-condensed">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>Password</th>
+      <th>Admin?</th>
+    </tr>
+  </thead>
+  <% @users.reverse.each do |user| %>
+    <tr>
+      <td><%=user.id%></td>
+      <td><%=user.name%></td>
+      <td><%=user.password%></td>
+      <td><%=user.admin%></td>
+    </tr>
+  <% end %>
+</table>

@@ -9,13 +9,17 @@ Rails.application.routes.draw do
     resources :replies
   end
 
-
+      # Navbar tabs
       get '/followed' => 'jots#followed'
       get '/myjots' => 'jots#my_jots'
-      get '/jotsnearme' => 'jots#jots_near_me'
 
+      # Follower functions
       post '/follow' => 'followers#follow'
       post '/unfollow' => 'followers#unfollow'
+
+      # Admin
+      get '/edit_users' => 'admins#edit_users'
+
 
   resource :user
   resource :session

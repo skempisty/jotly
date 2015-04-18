@@ -1,16 +1,92 @@
-<h1>New Comment</h1>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
 
+    <!-- Brand name -->
+    <div class="navbar-header">
+      <a class="navbar-brand">Jotly</a>
+    </div>
 
-<h2>Add Pic</h2>
+    <!-- Left Navbar items -->
+    <div class="navbar-collapse collapse" id="navbar">
+      <ul class="nav navbar-nav">
+        <li><a href="/jots">All Jots</a></li>
+        <li><a href="/followed">Followed Jots</a></li>
+        <li><a href="/myjots">My Jots</a></li>
+      </ul>
 
-<h2>Show all comments under it</h2>
+      <!-- Right Navbar items -->
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active"><a href="/session/new">User: <span style="color:green"><%=current_user.name%></span></a></li>
+        <li><%=link_to "Sign up", new_user_path %></li>
+        <li><%=link_to "Logout", '/logout', method: :post %></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-<h2>Need like / follow buttons here too. Can copy/paste to comments index of the jot</h2>
+<div class="@jot col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="thumbnail">
+
+    <!-- Image display -->
+    <div class="img">
+      <%= image_tag @jot.photo.url(:medium), class: "img-responsive" %>
+      <div class="post_options">
+        <!-- Displays Poster name -->
+        <p style="display:inline-block"> - <strong style="color:green;font-size:150%"><%=@jot.user.name%></strong>
+
+        &nbsp;
+
+        <!-- Follow button -->
+        <% if current_user.id != @jot.user.id %>
+          <% if following?(@jot.user.id) %>
+            <%=button_to "Unfollow", unfollow_path, params: {publisher_id: @jot.user.id}, class: "btn btn-info btn-xs"%>
+
+          <!-- OR -->
+          <% else %>
+            <!-- Unfollow button -->
+            <%=button_to "Follow", follow_path, params: {publisher_id: @jot.user.id}, class: "btn btn-info btn-xs"%>
+          <% end %>
+        <% end %>
+        </p>
+
+        <!-- Displays Like # / link to who liked the @jot -->
+        <p><%=link_to "#{@jot.likes_count} Likes", like_path(@jot) %>
+
+        &nbsp&nbsp&nbsp
+        <!-- Displays comments / number of comments. Links to comment index -->
+        <%=link_to "#{@jot.comments_count} Comments", jot_comments_path(@jot) %>
+        </p>
+
+        <!-- Logic for if the button is like or unlike -->
+        <% if @jot.liked_by?(current_user) %>
+          <%=button_to "Unlike", unlike_like_path(@jot), params: {id: @jot.id}, class: "btn btn-danger"%>
+        <% else %>
+          <%=button_to "Like", like_like_path(@jot), params: {id: @jot.id}, class: "btn btn-primary"%>
+        <% end %>
+
+        <!-- edit button  -->
+        <% if current_user.id == @jot.user.id %>
+          <%=link_to ('<span class="glyphicon glyphicon-edit"></span>').html_safe, edit_jot_path(@jot), params: {id: @jot.id}, class: "btn btn-warning"%>
+
+          <!-- Delete button -->
+          <%=link_to ('<span class="glyphicon glyphicon-remove"></span>').html_safe, @jot, method: :delete, params: {id: @jot.id}, data: { confirm: "Are you sure?" }, class: "btn btn-danger"%>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="caption">
+      <!-- Title -->
+      <strong><%= @jot.title %></strong>
+      <!-- Content -->
+      <p style="overflow-wrap:break-word"><%= @jot.content %></p>
+    </div>
+  </div>
+
+<br>
 
 <%=form_for [@jot,@comment] do |f| %>
-
-<%=f.label :content %>
-<%=f.text_area :content %>
-
-<%=f.submit %>
+  <p id="field_label">New Comment: </p>
+  <%=f.text_area :content, class: "text-area" %>
+  <br>
+  <%=f.submit 'Post Comment', class: "btn btn-primary" %>
 <%end%>
