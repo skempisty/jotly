@@ -18,7 +18,7 @@ class RepliesController < ApplicationController
 
   def update
     reply = Reply.find(params[:id])
-    reply.update(reply_params)
+    reply.update(params.require(:reply).permit(:content))
     redirect_to jot_comments_path(reply.comment.jot.id)
   end
 

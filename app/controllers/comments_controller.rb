@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
 
   def update
     comment = Comment.find(params[:id])
-    comment.update(comment_params)
+    comment.update(params.require(:comment).permit(:content))
     redirect_to jot_comments_path
   end
 

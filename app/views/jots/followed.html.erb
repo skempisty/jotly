@@ -24,14 +24,14 @@
   </div>
 </nav>
 
-<% if @follower_objects.blank? %>
+<% if @followed_jots.blank? %>
   <h3>Posts from followed users will be displayed here!</h3>
   <p style="color:orange">Follow someone to personalize this feed!</p>
 <% end %>
 
-<% @followed_jots.sort_by(&:created_at).reverse.each do |jot| %>
+<% @followed_jots.each do |jot| %>
   <div class="jot col-xs-12 col-sm-6 col-md-4 col-lg-4">
-    <div class="thumbnail">
+    <div class="thumbnail <%=sticky?(jot)%>">
 
       <!-- Image display -->
 
@@ -46,7 +46,7 @@
       <div class="caption">
 
         <!-- Title -->
-        <strong><%= jot.title %></strong>
+        <strong><%= jot.title %></strong> <span class="<%= sticky_pushpin(jot) %>"></span>
 
         <!-- Content -->
         <p class="content" style="overflow-wrap:break-word"><%= jot.content %></p>
@@ -88,6 +88,11 @@
 
           <!-- Comment button -->
           <%=link_to ('<span class="glyphicon glyphicon-comment"></span>').html_safe, new_jot_comment_path(jot), params: {id: jot.id}, class: "btn btn-primary"%>
+
+          <!-- Sticky button -->
+          <% if current_user.try(:admin?) %>
+            <%=button_to 'Sticky', sticky_path(jot), params: {id: jot.id}, class: "btn btn-info" %>
+          <% end %>
         </div>
       </div>
     </div>

@@ -32,11 +32,14 @@
   </div>
 </nav>
 
-<p><%=link_to "+ New Jot", new_jot_path %></p>
+<span><%=link_to "+ New Jot", new_jot_path, class: "btn btn-primary" %><%= will_paginate @jots, :id => "paginate_top" %></span>
 
-<% @jots.reverse.each do |jot|  %>
+<br><br>
+
+<div>
+<% @jots.each do |jot|  %>
   <div class="jot col-xs-12 col-sm-6 col-md-4 col-lg-4">
-    <div class="thumbnail">
+    <div class="thumbnail <%=sticky?(jot)%>">
 
       <!-- Image display -->
 
@@ -51,7 +54,7 @@
       <div class="caption">
 
         <!-- Title -->
-        <strong><%= jot.title %></strong>
+        <strong><%= jot.title %></strong> <span class="<%= sticky_pushpin(jot) %>"></span>
 
         <!-- Content -->
         <p class="content" style="overflow-wrap:break-word"><%= jot.content %></p>
@@ -101,9 +104,15 @@
             <!-- Delete button -->
             <%=link_to ('<span class="glyphicon glyphicon-remove"></span>').html_safe, jot, method: :delete, params: {id: jot.id}, data: { confirm: "Are you sure you want to DELETE your JOT?" }, class: "btn btn-danger"%>
           <% end %>
+
+          <!-- Sticky button -->
+          <% if current_user.try(:admin?) %>
+            <%=button_to 'Sticky', sticky_path(jot), params: {id: jot.id}, class: "btn btn-info" %>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
-
 <%end%>
+<%= will_paginate @jots, :id => "paginate_bottom" %>
+</div>

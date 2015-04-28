@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
       # Admin
       get '/edit_users' => 'admins#edit_users'
+      post '/promote_demote' => 'admins#promote_demote'
+      post '/sticky' => 'admins#sticky'
 
 
   resource :user

@@ -27,8 +27,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'sidekiq'
 gem 'exifr'
+gem 'will_paginate', '~> 3.0.6'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 gem "paperclip", "~> 4.2"
 gem 'aws-sdk-v1'
 # Use Unicorn as the app server
