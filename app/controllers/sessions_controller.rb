@@ -4,14 +4,12 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if params[:user].present?
-      if User.where(name: params[:user]).exists?
-        user=User.find_by(name: params[:user])
-        session[:current_user] = user.id
-        redirect_to jots_path
-      else
-        redirect_to new_session_path, notice: "No user by that name"
-      end
+    user = User.find_by(name: params[:name])
+    if user && user.authenticate(params[:password])
+      session[:current_user] = user.id
+      redirect_to jots_path
+    else
+      redirect_to new_session_path, notice: "Invalid Login - Try Again"
     end
   end
 
@@ -19,5 +17,4 @@ class SessionsController < ApplicationController
     session[:current_user] = nil
     redirect_to root_path
   end
-
 end

@@ -1,10 +1,56 @@
-<h1>New User</h1>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+
+    <!-- Brand name -->
+    <div class="navbar-header">
+      <a class="navbar-brand">Jotly</a>
+    </div>
+
+    <!-- Left Navbar items -->
+    <div class="navbar-collapse collapse" id="navbar">
+      <ul class="nav navbar-nav">
+        <li><a href="/jots">All Jots</a></li>
+        <li><a href="/followed">Followed Jots</a></li>
+        <li><a href="/myjots">My Jots</a></li>
+      </ul>
+
+      <!-- Right Navbar items -->
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active"><%=link_to "Sign up", new_user_path %></li>
+        <li><%=link_to "Logout", '/logout', method: :post %></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<h1>Welcome to Jotly!</h1>
 
 <%= form_for @user, :url => user_path do |f| %>
 
-<%=f.label :name %>:
-<%=f.text_field :name %>
+<% if @user.errors.any? %>
+  <div class="error_explain">
+    <h4 class="error">* <%= pluralize(@user.errors.count, "error") %>
+    prohibited this user from being saved:</h4>
+    <ul class="error">
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%=msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
-<%=f.submit %>
+<p class="form_label">Username:</p>
+<%=f.text_field :name %>
+<br><br>
+
+<p class="form_label">Password:</p>
+<%=f.password_field :password %>
+<br><br>
+
+<p class="form_label">Password Confirm:</p>
+<%=f.password_field :password_confirmation %>
+
+<br><br>
+<%=f.submit 'Sign up!', class: "btn btn-primary" %>
 
 <%end%>
