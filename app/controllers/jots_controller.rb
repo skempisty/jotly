@@ -49,6 +49,17 @@ class JotsController < ApplicationController
     @my_jots = Jot.order('sticky').order('created_at').where(user_id: current_user.id)
   end
 
+  def jots_search
+    if User.where(name: params[:search]).blank?
+
+    else
+      puts user = User.where(name: params[:search])
+      @searched_result = Jot.order('sticky').order('created_at')
+        .where(user_id: user.id)
+        .page(params[:page]).per_page(15).all
+    end
+  end
+
   private
   def jot_params
     params.require(:jot).permit(

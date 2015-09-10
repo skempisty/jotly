@@ -13,6 +13,9 @@ Rails.application.routes.draw do
       get '/followed' => 'jots#followed'
       get '/myjots' => 'jots#my_jots'
 
+      # Search Field
+      get '/usersearch' => 'jots#jots_search'
+
       # Follower functions
       post '/follow' => 'followers#follow'
       post '/unfollow' => 'followers#unfollow'

@@ -2,7 +2,7 @@ class Jot < ActiveRecord::Base
   belongs_to :user
   has_many :likes
   has_many :comments
-  
+
 
   validates :title, length: { maximum: 37,
     too_long: "%{count} characters is the maximum allowed" }
@@ -22,6 +22,5 @@ class Jot < ActiveRecord::Base
     likes.where(user: user).exists?
   end
 
-geocoded_by :address
-reverse_geocoded_by :lat, :long
+
 end

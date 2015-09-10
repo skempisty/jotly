@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150428180724) do
+ActiveRecord::Schema.define(version: 20150511132827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 20150428180724) do
     t.boolean  "sticky",                                      default: false
   end
 
+  add_index "jots", ["user_id"], name: "index_jots_on_user_id", using: :btree
+
   create_table "likes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "jot_id"
@@ -69,6 +71,7 @@ ActiveRecord::Schema.define(version: 20150428180724) do
     t.datetime "updated_at",                      null: false
     t.boolean  "admin",           default: false
     t.string   "password_digest"
+    t.string   "email"
   end
 
 end

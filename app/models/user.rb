@@ -8,14 +8,8 @@ class User < ActiveRecord::Base
   has_many :subscribers, through: :followers
 
   validates :name, uniqueness: true
-  
+
 
   has_secure_password
-
-
-
-
-
-
-
+  
 end

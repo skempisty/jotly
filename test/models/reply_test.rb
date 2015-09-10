@@ -1,7 +1,15 @@
 require 'test_helper'
 
 class ReplyTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
+  describe "test reply create" do
+    before do
+      @testReply = Reply.create(content: 'test reply')
+    end
+
+    it "should create testReply" do
+      @testReply.content.must_equal "test reply"
+    end
+  end
+
 end

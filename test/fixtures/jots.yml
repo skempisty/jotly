@@ -1,9 +1,5 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  content: MyString
-  user_id: MyString
-
-two:
-  content: MyString
-  user_id: MyString
+testJot:
+  id: 1
+  title: testTitle
+  content: This is only a test
+  user_id: 1

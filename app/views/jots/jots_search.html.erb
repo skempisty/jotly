@@ -8,13 +8,11 @@
 
     <!-- Left Navbar items -->
     <div class="navbar-collapse collapse" id="navbar">
-      <ul class="nav navbar-nav navbar-left">
-        <li class="active"><a href="/jots">All Jots</a></li>
+      <ul class="nav navbar-nav">
+        <li><a href="/jots">All Jots</a></li>
         <li><a href="/followed">Followed Jots</a></li>
         <li><a href="/myjots">My Jots</a></li>
       </ul>
-      
-
 
       <!-- Right Navbar items -->
       <ul class="nav navbar-nav navbar-right">
@@ -34,12 +32,10 @@
   </div>
 </nav>
 
-<span><%=link_to "+ New Jot", new_jot_path, class: "btn btn-primary" %><%= will_paginate @jots, :id => "paginate_top" %></span>
-
-<br><br>
+<%= will_paginate @searched_result, :id => "paginate_top" %>
 
 <div>
-<% @jots.each do |jot|  %>
+<% @search_result.each do |jot|  %>
   <div class="jot col-xs-12 col-sm-6 col-md-4 col-lg-4">
     <div class="thumbnail <%=sticky?(jot)%>">
 
@@ -116,5 +112,5 @@
     </div>
   </div>
 <%end%>
-<%= will_paginate @jots, :id => "paginate_bottom" %>
+<%= will_paginate @search_result, :id => "paginate_bottom" %>
 </div>
