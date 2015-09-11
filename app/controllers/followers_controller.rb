@@ -1,7 +1,5 @@
 class FollowersController < ApplicationController
 
-  # def create
-  #   FollowerMailer.new_follower(follower).deliver
   def follow
     Follower.create(user_id: params[:publisher_id], subscriber_id: current_user.id)
     redirect_to :back
