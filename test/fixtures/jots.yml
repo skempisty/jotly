@@ -3,3 +3,4 @@ testJot:
   title: testTitle
   content: This is only a test
   user_id: 1
+  sticky: false
