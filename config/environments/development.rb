@@ -9,14 +9,7 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
-  # config.paperclip_defaults = {
-  #   :storage => :s3,
-  #   :s3_credentials => {
-  #     :bucket => ENV['jotly'],
-  #     :access_key_id => ENV['AKIAJBMBPJICRYSZKMOQ'],
-  #     :secret_access_key => ENV['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']
-  #   }
-  # }
+  
 #   config.paperclip_defaults = {
 #   :storage => :s3,
 #   :s3_credentials => {
