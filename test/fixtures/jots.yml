@@ -4,3 +4,4 @@ testJot:
   content: This is only a test
   user_id: 1
   sticky: false
+  comments_count: 1

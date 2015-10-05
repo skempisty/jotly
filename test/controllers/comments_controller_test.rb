@@ -11,6 +11,7 @@ class CommentsControllerTest < ActionController::TestCase
 
     it "should GET new comment" do
       get :new, { :jot_id => 1 }
+      response.success?.must_equal true
     end
   end
 
@@ -20,8 +21,10 @@ class CommentsControllerTest < ActionController::TestCase
     before do
       session[:current_user] = users(:steve).id
     end
-    it "should create" do
-      post :create, { jot_id: 1, comment: comments(:testComment).attributes }
+    it "should increase count by 1" do
+      assert_difference 'jots(:testJot).reload.comments_count', 1 do
+        post :create, { jot_id: 1, comment: comments(:testComment).attributes }
+      end
     end
   end
 
@@ -33,6 +36,7 @@ class CommentsControllerTest < ActionController::TestCase
     end
     it "should GET index" do
       get :index, { jot_id: 1 }
+      response.success?.must_equal true
     end
   end
 
@@ -44,30 +48,39 @@ class CommentsControllerTest < ActionController::TestCase
     end
     it "should GET the Edit page" do
       get :edit, { jot_id: 1, id: comments(:testComment).id }
+      response.success?.must_equal true
     end
   end
 
   #update
 
-  describe "the update action" do
+  describe "update action" do
     before do
       session[:current_user] = users(:steve).id
     end
-    it "should Update the comment" do
+
+    it "changes comment attributes" do
+      comment = comments(:testComment)
+      commentInit = comment.content
       patch :update, { jot_id: 1, id: comments(:testComment).id,
-        comment: comments(:testComment).attributes }
+        comment: comment.attributes = { content: "test1" }}
+      commentFinal = comment.content
+      commentFinal.wont_equal commentInit
     end
   end
 
   #destroy
 
-  describe "the destroy action" do
+  describe "DELETE destroy" do
     before do
       session[:current_user] = users(:steve).id
     end
-    it "should DELETE the comment" do
+
+    it "deletes the comment" do
       @request.env["HTTP_REFERER"] = '/'
-      delete :destroy, { jot_id: 1, id: comments(:testComment).id }
+      assert_difference 'jots(:testJot).reload.comments_count', -1 do
+        delete :destroy, { jot_id: 1, id: comments(:testComment).id }
+      end
     end
   end
 end
