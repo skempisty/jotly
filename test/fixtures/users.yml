@@ -1,7 +1,9 @@
 steve:
   id: 1
   name: steve
+  admin: true
 
 jake:
   id: 2
   name: jake
+  admin: false
