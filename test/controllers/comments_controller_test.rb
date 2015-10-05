@@ -4,7 +4,7 @@ class CommentsControllerTest < ActionController::TestCase
 
   #new
 
-  describe "the new action" do
+  describe "new action" do
     before do
       session[:current_user] = users(:steve).id
     end
@@ -17,7 +17,7 @@ class CommentsControllerTest < ActionController::TestCase
 
   #create
 
-  describe "the create action" do
+  describe "create action" do
     before do
       session[:current_user] = users(:steve).id
     end
@@ -30,11 +30,11 @@ class CommentsControllerTest < ActionController::TestCase
 
   #index
 
-  describe "the index action" do
+  describe "index action" do
     before do
       session[:current_user] = users(:steve).id
     end
-    it "should GET index" do
+    it "should GET index page" do
       get :index, { jot_id: 1 }
       response.success?.must_equal true
     end
@@ -42,7 +42,7 @@ class CommentsControllerTest < ActionController::TestCase
 
   #edit
 
-  describe "the edit action" do
+  describe "edit action" do
     before do
       session[:current_user] = users(:steve).id
     end
