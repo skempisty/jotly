@@ -10,10 +10,11 @@ class LikesControllerTest < ActionController::TestCase
     end
     it "should POST a like" do
       @request.env["HTTP_REFERER"] = '/'
-      post :like, { id: jots(:testJot).id }
+      assert_difference 'jots(:testJot).reload.likes_count', 1 do
+        post :like, { id: jots(:testJot).id }
+      end
     end
   end
-
 
   #unlike
 
@@ -23,7 +24,9 @@ class LikesControllerTest < ActionController::TestCase
     end
     it "should POST an unlike" do
       @request.env["HTTP_REFERER"] = '/'
-      post :unlike, { id: jots(:testJot).id }
+      assert_difference 'jots(:testJot).reload.likes_count', -1 do
+        post :unlike, { id: jots(:testJot).id }
+      end
     end
   end
 
@@ -35,6 +38,7 @@ class LikesControllerTest < ActionController::TestCase
     end
     it "should GET show likes" do
       get :show, { id: jots(:testJot).id }
+      response.success?.must_equal true
     end
   end
 end
