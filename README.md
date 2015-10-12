@@ -1,20 +1,19 @@
-== README
-
 # Jotly
-
 Version 1.0
+
+### Synopsis
 
 Jotly is a simple image based bulletin board/blogging application.
 
-## Author
+### Author
 
 * Stephen Kempisty
 
-## Install
+### Install
 
 Make sure you have Ruby 2.2.0, Bundler, and the Heroku Toolbelt installed.
 
-### Running Locally
+#### Running Locally
 
   git clone skempisty@github.com:heroku/jotly.git
   bundle
@@ -24,7 +23,7 @@ Make sure you have Ruby 2.2.0, Bundler, and the Heroku Toolbelt installed.
 
 Jotly should now be running on localhost:3000.
 
-### Deploying to Heroku
+#### Deploying to Heroku
 
   heroku create
   git push heroku master
