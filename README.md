@@ -1,28 +1,38 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Jotly
 
-Things you may want to cover:
+Version 1.0
 
-* Ruby version
+Jotly is a simple image based bulletin board/blogging application.
 
-* System dependencies
+## Author
 
-* Configuration
+* Stephen Kempisty
 
-* Database creation
+## Install
 
-* Database initialization
+Make sure you have Ruby 2.2.0, Bundler, and the Heroku Toolbelt installed.
 
-* How to run the test suite
+### Running Locally
 
-* Services (job queues, cache servers, search engines, etc.)
+  git clone skempisty@github.com:heroku/jotly.git
+  bundle
+  cd jotly
+  bundle exec rake bootstrap
+  heroku local
 
-* Deployment instructions
+Jotly should now be running on localhost:3000.
 
-* ...
+### Deploying to Heroku
 
+  heroku create
+  git push heroku master
+  heroku run rake db:migrate
+  heroku open
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+AWS configuration variables must be set to support image handling
+
+  heroku config:set S3_BUCKET_NAME=your_bucket_name
+  heroku config:set AWS_ACCESS_KEY_ID=your_access_key_id
+  heroku config:Set AWS_SECRET_ACCESS_KEY=your_secret_access_key
