@@ -2,30 +2,18 @@
 
   <div class="jumbotron">
     <h1>Jotly</h1>
-    <p>Welcome to a constantly improving experience based on user feedback</p>
     <br>
+    <p>Welcome to a constantly improving image board experience based on user feedback</p>
     <p>Post pictures, comment, and discuss</p>
   </div>
 
   <!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
   <div class="content">
-    <p class="content-padded">Sign up or Login to continue:</p>
     <div class="card">
-      <ul class="table-view">
-        <li class="table-view-cell">
-            <strong><%=link_to "Sign up", new_user_path %></strong>
-        </li>
-        <li class="table-view-cell">
-            <strong><%=link_to "Login", new_session_path %></strong>
-        </li>
-      </ul>
+          <strong><%=link_to "Sign up", new_user_path, class: "btn btn-primary" %></strong>
+          <strong><%=link_to "Login", new_session_path, class: "btn btn-warning" %></strong>
       <% if session[:current_user].present? %>
-        <p>Or:</p>
-        <ul>
-          <li class="table-view-cell">
-            <strong><%=link_to "Continue as user: #{current_user.name}", jots_path %></strong>
-          </li>
-        </ul>
+          <strong><%=link_to "Continue as user: #{current_user.name}", jots_path, class: "btn btn-info" %></strong>
       <% end %>
     </div>
   </div>

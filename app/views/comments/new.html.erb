@@ -93,7 +93,7 @@
 <br>
 
 <%=form_for [@jot,@comment] do |f| %>
-  <p id="field_label">New Comment: </p>
+  <p class="non_jot_text">New Comment: </p>
   <%=f.text_area :content, class: "text-area" %>
   <br>
   <%=f.submit 'Post Comment', class: "btn btn-primary" %>

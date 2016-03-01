@@ -33,8 +33,8 @@
 </nav>
 
 <% if @followed_jots.blank? %>
-  <h3>Posts from followed users will be displayed here!</h3>
-  <p style="color:orange">Follow someone to personalize this feed!</p>
+  <h3 class = "non_jot_text">Posts from followed users will be displayed here!</h3>
+  <p class = "non_jot_text">Follow someone to personalize this feed!</p>
 <% end %>
 
 <% @followed_jots.each do |jot| %>

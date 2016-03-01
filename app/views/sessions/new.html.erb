@@ -24,19 +24,20 @@
 </nav>
 
 
-<h1>Welcome Back!</h1>
+<h1 class="non_jot_text">Welcome Back!</h1>
 
 <%= form_tag session_path do %>
+  <p class="non_jot_text">
+    <%=label_tag(:user, "Username: ") %><br>
+    <%=text_field_tag(:name) %>
+  </p>
+  <p class="non_jot_text">
+    <%=label_tag(:user, "Password: ") %><br>
+    <%=password_field_tag(:password) %>
+  </p>
+  <br>
 
-<%=label_tag(:user, "Username: ") %><br>
-<%=text_field_tag(:name) %>
-<br><br>
-
-<%=label_tag(:user, "Password: ") %><br>
-<%=password_field_tag(:password) %>
-<br><br>
-
-<%=submit_tag("Log in!", :class => "btn btn-primary") %>
+  <%=submit_tag("Log in!", :class => "btn btn-primary") %>
 
 <%end%>
 

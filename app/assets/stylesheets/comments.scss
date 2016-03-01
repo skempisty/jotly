@@ -4,22 +4,23 @@
 body{
   padding-top: 60px;
 }
-    .thumbnail{
-      position:relative;
-      height:100%;
-      background-color: lightgrey;
-      margin:0px;
+.thumbnail{
+  position:relative;
+  height:100%;
+  background-color: white;
+  margin:0px;
 
-      div.img{
-        margin-left: 0;
-        position:relative;
-        .post_options{
-          position:absolute;
-          bottom:0px;
-          left:310px;
-        }
-      }
-      .content{
-
-      }
+  div.img{
+    margin-left: 0;
+    position:relative;
+    .post_options{
+      position:absolute;
+      bottom:0px;
+      left:310px;
+    }
+  }
+}
+.non_jot_text{
+  font-family: monospace;
+  font-size: 200%;
 }

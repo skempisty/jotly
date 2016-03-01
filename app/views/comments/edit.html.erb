@@ -38,7 +38,7 @@
 
 <%= form_for [@jot,@comment] do |f| %>
 
-<p id="field_label">Edit Comment: </p>
+<p class="non_jot_text">Edit Comment: </p>
 <p><%=f.text_area :content, class: "text-area" %></p>
 
 <%=f.submit 'Edit Comment', class: "btn btn-warning"%>

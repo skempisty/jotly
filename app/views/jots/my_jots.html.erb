@@ -32,7 +32,12 @@
   </div>
 </nav>
 
-<p><%=link_to "+ New Jot", new_jot_path %></p>
+<p><%=link_to "+ New Jot", new_jot_path, class: "btn btn-primary" %></p>
+
+<% if @my_jots.blank? %>
+  <h3 class = "non_jot_text">You haven't made any Jots yet!</h3>
+  <p class = "non_jot_text">Jots you post will be displayed on this page!</p>
+<% end %>
 
 <% @my_jots.reverse.each do |jot|%>
 <div class="jot col-xs-12 col-sm-6 col-md-4 col-lg-4">

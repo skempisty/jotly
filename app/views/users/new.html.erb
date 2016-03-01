@@ -23,38 +23,38 @@
   </div>
 </nav>
 
-<h1>Welcome to Jotly!</h1>
+<h1 class="non_jot_text">Welcome to Jotly!</h1>
 
 <%= form_for @user, :url => user_path do |f| %>
 
-<% if @user.errors.any? %>
-  <div class="error_explain">
-    <h4 class="error">* <%= pluralize(@user.errors.count, "error") %>
-    prohibited this user from being saved:</h4>
-    <ul class="error">
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%=msg %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+  <% if @user.errors.any? %>
+    <div class="error_explain">
+      <h4 class="error">* <%= pluralize(@user.errors.count, "error") %>
+      prohibited this user from being saved:</h4>
+      <ul class="error">
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%=msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<p class="form_label">Username:</p>
-<%=f.text_field :name %>
-<br><br>
+  <p class="form_label">Username:</p>
+  <%=f.text_field :name %>
+  <br><br>
 
-<p class="form_label">Password:</p>
-<%=f.password_field :password %>
-<br><br>
+  <p class="form_label">Password:</p>
+  <%=f.password_field :password %>
+  <br><br>
 
-<p class="form_label">Password Confirm:</p>
-<%=f.password_field :password_confirmation %>
-<br><br>
+  <p class="form_label">Password Confirm:</p>
+  <%=f.password_field :password_confirmation %>
+  <br><br>
 
-<p class="form_label">Email:</p>
-<%=f.text_field :email %>
+  <p class="form_label">Email:</p>
+  <%=f.text_field :email %>
 
-<br><br>
-<%=f.submit 'Sign up!', class: "btn btn-primary" %>
+  <br><br>
+  <%=f.submit 'Sign up!', class: "btn btn-primary" %>
 
 <%end%>
